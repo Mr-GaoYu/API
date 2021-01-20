@@ -16,3 +16,4 @@ export declare const setURL: (url: string) => (object: any) => any;
 export declare const setMethod: (method: MethodField) => (object: any) => any;
 export declare const setParams: (params?: any) => (object: any) => any;
 export declare const requestGenerator: <T>(...fns: Function[]) => Promise<T>;
+export default requestGenerator;

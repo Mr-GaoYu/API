@@ -56,3 +56,5 @@ const reduceRequestConfig = (...fns: Function[]): RequestConfig =>
     url: 'https://api.linode.com/v4',
     headers: {},
   });
+
+export default requestGenerator;
