@@ -82,14 +82,89 @@
 
 - 和 include 属性一样，支持 glob 通配符：
 
-    * 匹配0或多个字符（不包括目录分隔符）
-    * ? 匹配一个任意字符（不包括目录分隔符）
-    * 递归匹配任意子目录
+  - 匹配 0 或多个字符（不包括目录分隔符）
+  - ? 匹配一个任意字符（不包括目录分隔符）
+  - 递归匹配任意子目录
 
 ```js
     {
         "exclude": [
             "src/lib" // 排除src目录下的lib文件夹下的文件不会编译
         ]
+    }
+```
+
+### extends
+
+- extends 属性作用是引入其他配置文件，继承配置。
+
+- 默认包含当前目录和子目录下所有 TypeScript 文件。
+
+```js
+    {
+        // 把基础配置抽离成tsconfig.base.json文件，然后引入
+	    "extends": "./tsconfig.base.json"
+    }
+```
+
+### files
+
+- files 属性作用是指定需要编译的单个文件列表。
+
+- 默认包含当前目录和子目录下所有 TypeScript 文件。
+
+```js
+    {
+        "files": [
+            // 指定编译文件是src目录下的leo.ts文件
+            "scr/leo.ts"
+        ]
+    }
+```
+
+### include
+
+- include 属性作用是指定编译需要编译的文件或目录。
+
+```js
+    {
+       "include": [
+            // "scr" // 会编译src目录下的所有文件，包括子目录
+            // "scr/*" // 只会编译scr一级目录下的文件
+            "scr/*/*" // 只会编译scr二级目录下的文件
+        ]
+    }
+```
+
+### references
+
+- references 属性作用是指定工程引用依赖。
+  在项目开发中，有时候我们为了方便将前端项目和后端 node 项目放在同一个目录下开发，
+  两个项目依赖同一个配置文件和通用文件，但我们希望前后端项目进行灵活的分别打包，
+  那么我们可以进行如下配置：
+
+```js
+    {
+       "references": [ // 指定依赖的工程
+            {"path": "./common"}
+        ]
+    }
+```
+
+### typeAcquisition
+
+- typeAcquisition 属性作用是设置自动引入库类型定义文件(.d.ts)相关。 包含 3 个子属性：
+
+  - enable : 布尔类型，是否开启自动引入库类型定义文件(.d.ts)，默认为 false；
+  - include : 数组类型，允许自动引入的库名，如：["jquery", "lodash"]；
+  - exculde : 数组类型，排除的库名。
+
+```js
+    {
+        "typeAcquisition": {
+            "enable": false,
+            "exclude": ["jquery"],
+            "include": ["jest"]
+        }
     }
 ```
