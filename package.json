@@ -1,0 +1,23 @@
+{
+  "name": "api-v1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Mr-GaoYu/API.git",
+  "author": "Mr_GaoYu <Mr_GaoYu@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"tsc -w\" \"babel src --watch --out-dir lib \""
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "concurrently": "^5.3.0",
+    "webpack": "^5.16.0"
+  }
+}
