@@ -1,9 +1,5 @@
-function sum(a: number, b: number) {
+const  sum = (a: number, b: number):number => {
   return a + b;
-}
-
-function a(zxczx: number) {
-  return zxczx;
 }
 
 export default sum;
