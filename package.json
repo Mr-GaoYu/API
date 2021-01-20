@@ -54,5 +54,8 @@
     ".{ts,tsx}": [
       "tsc -p tsconfig.json --noEmit true --emitDeclarationOnly false"
     ]
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
   }
 }
