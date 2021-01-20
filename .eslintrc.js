@@ -68,7 +68,7 @@ module.exports = {
     'no-multiple-empty-lines': 'error',
     curly: 'warn',
     'sort-keys': 'off',
-    'comma-dangle': 'never',
+    'comma-dangle': 'off',
     'no-trailing-spaces': 'warn',
     'no-mixed-requires': 'warn',
     'spaced-comment': 'warn',
