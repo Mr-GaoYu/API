@@ -57,6 +57,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     // sonar
     'sonarjs/cognitive-complexity': 'warn',
     'sonarjs/no-duplicate-string': 'warn',
