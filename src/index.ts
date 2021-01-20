@@ -1,4 +1,4 @@
-export const a: boolean = true;
-export const b= (a:boolean):boolean  =>{
-    return a
+function sum(a: number, b: number) {
+  return a + b;
 }
+export default sum;

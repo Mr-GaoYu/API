@@ -172,5 +172,6 @@
 ```js
 /**
  * see https://juejin.cn/post/6844904178234458120#heading-12.
+ * and https://zhuanlan.zhihu.com/p/102250469
  */
 ```
