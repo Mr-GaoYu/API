@@ -70,6 +70,7 @@
         "rootDirs": ["src","out"], // 将多个目录放在一个虚拟目录下，用于运行时，即编译后引入文件的位置可能发生变化，这也设置可以虚拟src和out在同一个目录下，不用再去改变路径也不会报错
         "listEmittedFiles": true, // 打印输出文件
         "listFiles": true// 打印编译的文件(包括引用的声明文件)
+        "skipLibCheck": true // 忽略所有的声明文件（*.d.ts）的类型检查。
     }
     }
 ```

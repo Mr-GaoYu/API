@@ -1,4 +1,4 @@
-import { array, mixed, number, object, string, AnySchema } from 'yup';
+import { array, mixed, number, object, string } from 'yup';
 
 const domainSchemaBase = object().shape({
   domain: string().matches(
@@ -29,7 +29,7 @@ export const createDomainSchema = domainSchemaBase.shape({
   type: mixed().required().oneOf(['master', 'slave']),
   soa_email: string()
     .when('type', {
-      is: (type: string) => type === 'master',
+      is: (type) => type === 'master',
       then: string().required('邮箱不能为空。'),
       otherwise: string(),
     })
