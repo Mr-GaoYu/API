@@ -1,15 +1,27 @@
 {
   "name": "api-v1",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/Mr-GaoYu/API.git",
   "author": "Mr_GaoYu <Mr_GaoYu@163.com>",
   "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "unpkg": "./index.js",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib/*",
+    "package.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": "8.* || >= 10.*"
+  },
   "scripts": {
-    "start": "concurrently \"tsc -w\" \"babel src --watch --out-dir lib --extensions '.ts,.tsx'\" -n 'tsc,babel' -k",
-    "build": "tsc && babel src --out-dir lib --extensions '.ts,.tsx' && webpack",
+    "start": "concurrently \"tsc -w\" \"babel src --watch --out-dir lib --extensions \".ts,.tsx\"\" -n \"tsc,babel\" -k",
+    "build": "tsc && babel src --out-dir lib --extensions \".ts,.tsx\" && webpack",
     "test": "jest --config=jest.config.json",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --no-cache --no-watchman",
     "lint": "yarn run eslint . --quiet --ext .js,.ts,.tsx",
     "typecheck": "tsc --noEmit true --emitDeclarationOnly false"
   },
@@ -57,6 +69,7 @@
     ]
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/yup": "^0.29.11",
     "axios": "^0.21.1",
     "yup": "^0.32.8"

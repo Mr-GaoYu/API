@@ -1,7 +1,9 @@
 import Axios, { AxiosRequestConfig } from 'axios';
+import { ObjectSchema, ValidationError } from 'yup';
+import { APIError } from './types';
 
 export interface RequestConfig extends AxiosRequestConfig {
-  validationErrors?: any[];
+  validationErrors?: APIError[];
 }
 
 export type ConfigField = 'headers' | 'data' | 'params' | 'method' | 'url';
@@ -41,6 +43,70 @@ export const setURL = (url: string) => set('url', url);
 export const setMethod = (method: MethodField) => set('method', method);
 
 export const setParams = (params: any = {}) => set('params', params);
+
+export const setData = <T extends {}>(
+  data: T,
+  schema?: ObjectSchema<T>,
+
+  // eslint-disable-next-line no-unused-vars
+  postValidationTransform?: (v: any) => any
+) => {
+  if (!schema) {
+    return set('data', data);
+  }
+
+  const updatedData =
+    typeof postValidationTransform === 'function'
+      ? postValidationTransform(data)
+      : data;
+
+  try {
+    schema.validateSync(data, { abortEarly: false });
+    return set('data', updatedData);
+  } catch (error) {
+    return (object: any) => ({
+      ...object,
+      data: updatedData,
+      validationErrors: convertYupToLinodeErrors(error),
+    });
+  }
+};
+
+const convertYupToLinodeErrors = (
+  validationError: ValidationError
+): APIError[] => {
+  const { inner } = validationError;
+
+  if (inner && inner.length > 0) {
+    return inner.reduce(
+      (result: APIError[], innerValidationError: ValidationError) => {
+        const err = convertYupToLinodeErrors(innerValidationError);
+        return Array.isArray(err) ? [...result, ...err] : [...result, err];
+      },
+      []
+    );
+  }
+
+  return [mapYupToLinodeAPIError(validationError)];
+};
+
+const mapYupToLinodeAPIError = ({
+  message,
+  path,
+}: ValidationError): APIError => ({
+  reason: message,
+  ...(path && { field: path }),
+});
+
+export const setXFilter = (xFilter: any) => {
+  return (object: any) =>
+    isEmpty(xFilter)
+      ? object
+      : {
+          ...object,
+          headers: { ...object.headers, 'X-Filter': JSON.stringify(xFilter) },
+        };
+};
 
 export const requestGenerator = <T>(...fns: Function[]): Promise<T> => {
   const config = reduceRequestConfig(...fns);
