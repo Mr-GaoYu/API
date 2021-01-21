@@ -1,10 +1,19 @@
 {
   "name": "api-v1",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/Mr-GaoYu/API.git",
   "author": "Mr_GaoYu <Mr_GaoYu@163.com>",
   "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "unpkg": "./index.js",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib/*",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "start": "concurrently \"tsc -w\" \"babel src --watch --out-dir lib --extensions \".ts,.tsx\"\" -n \"tsc,babel\" -k",
     "build": "tsc && babel src --out-dir lib --extensions \".ts,.tsx\" && webpack",
@@ -57,8 +66,8 @@
     ]
   },
   "dependencies": {
-    "@types/yup": "^0.29.11",
+    "@types/yup": "^0.26.22",
     "axios": "^0.21.1",
-    "yup": "^0.32.8"
+    "yup": "^0.27.0"
   }
 }
