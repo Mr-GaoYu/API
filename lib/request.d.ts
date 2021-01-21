@@ -1,7 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
 import { ObjectSchema } from 'yup';
+import { APIError } from './types';
 export interface RequestConfig extends AxiosRequestConfig {
-  validationErrors?: any[];
+  validationErrors?: APIError[];
 }
 export declare type ConfigField =
   | 'headers'
@@ -28,7 +29,7 @@ export declare const setData: <T extends {}>(
       >
     | undefined,
   postValidationTransform?: ((v: any) => any) | undefined
-) => ((object: any) => any) | undefined;
+) => (object: any) => any;
 export declare const setXFilter: (xFilter: any) => (object: any) => any;
 export declare const requestGenerator: <T>(...fns: Function[]) => Promise<T>;
 export default requestGenerator;

@@ -21,3 +21,24 @@ export declare type DomainStatus =
   | 'edit_mode'
   | 'has_errors';
 export declare type DomainType = 'master' | 'slave';
+export interface CreateDomainPayload {
+  domain: string;
+  type: DomainType;
+  master_ips?: string[];
+  soa_email?: string;
+  tags?: string[];
+}
+export interface UpdateDomainPayload {
+  domain?: string;
+  soa_email?: string;
+  description?: string;
+  refresh_sec?: number;
+  retry_sec?: number;
+  expire_sec?: number;
+  ttl_sec?: number;
+  status?: DomainStatus;
+  tags?: string[];
+  master_ips?: string[];
+  axfr_ips?: string[];
+  group?: string;
+}

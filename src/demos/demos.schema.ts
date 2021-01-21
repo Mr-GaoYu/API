@@ -1,4 +1,4 @@
-import { array, mixed, number, object, string } from 'yup';
+import { array, mixed, number, object, string, AnySchema } from 'yup';
 
 const domainSchemaBase = object().shape({
   domain: string().matches(
@@ -37,7 +37,7 @@ export const createDomainSchema = domainSchemaBase.shape({
   master_ips: array()
     .of(string())
     .when('type', {
-      is: (type: string) => type === 'slave',
+      is: (type) => type === 'slave',
       then: array()
         .of(string())
         .compact()

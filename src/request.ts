@@ -48,6 +48,7 @@ export const setData = <T extends {}>(
   data: T,
   schema?: ObjectSchema<T>,
 
+  // eslint-disable-next-line no-unused-vars
   postValidationTransform?: (v: any) => any
 ) => {
   if (!schema) {
